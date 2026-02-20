@@ -12,7 +12,11 @@ data Shape = Circle Float | --representa el radio
 
 --Funcion que calcula el area de las figuras
 area :: Shape -> Float
-area = undefined
+area (Circle rad) = pi * (rad * rad)
+area (Square l) = l * l
+area (Rectangle b h) = b * h
+area (Triangle l) = (sqrt 3 / 4) * (l * l)
+area (Trapeze b1 b2 h) = ((b1 + b2) / 2) * h 
 
 --Funcion que calcula el perimetro de las figuras
 perimeter :: Shape -> Float
@@ -20,26 +24,40 @@ perimeter = undefined
 
 
 --Ejercicio 2 (Les toca arreglar el sinonimo)
-type Point = Shape
+type Point = (Float, Float)
+
 
 -- Funcion para calcular la distancia entre dos puntos
 distance :: Point -> Point -> Float
-distance = undefined 
+distance (x1, y1) (x2, y2) = sqrt ((x2 - x1)^2 + (y2 - y1)^2)
 
 --Funcion para calcular la distancia de un punto al origen
 from0 :: Point -> Float
-from0 = undefined
+from0 p = distance (0.0, 0.0) p 
 
 --Ejercicio 3
-data Haskellium = Undefined
+data Haskellium = Haskellium{
+    nombre :: String, 
+    apellido1 :: String, 
+    apellido2 :: String,
+    casita :: Point,
+    forma :: Shape 
+} deriving (Show)
+
 
 --Funcion para regresar el hijo de dos Haskelliums dado su nombre
 son :: Haskellium -> Haskellium -> String -> Haskellium
-son = undefined
+son progenitor1 progenitor2 hijo = Haskellium {
+    nombre = hijo,
+    apellido1 = apellido1 progenitor1,
+    apellido2 = apellido2 progenitor2,
+    casita = casita progenitor1,
+    forma = forma progenitor1
+}
 
 --Funcion para calcular las unidades para construir la casa de un Haskellium
 houseCost :: Haskellium -> Float
-houseCost = undefined
+houseCost = undefined 
 
 --Funcion para calcular el tiempo que le toma a un Haskellium para llegar a su trabajo
 timeToWork :: Haskellium -> Float
