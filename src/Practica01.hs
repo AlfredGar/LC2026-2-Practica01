@@ -59,6 +59,12 @@ son progenitor1 progenitor2 hijo = Haskellium {
 houseCost :: Haskellium -> Float
 houseCost = undefined 
 
+areaParedes :: Haskellium -> Float
+areaParedes ciudadano = perimeter (casita ciudadano)
+
+areaTecho :: Haskellium -> Float
+areaTecho ciudadano = area (casita ciudadano)
+
 --Funcion para calcular el tiempo que le toma a un Haskellium para llegar a su trabajo
 timeToWork :: Haskellium -> Float
 timeToWork = undefined
