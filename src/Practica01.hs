@@ -20,7 +20,11 @@ area (Trapeze b1 b2 h) = ((b1 + b2) / 2) * h
 
 --Funcion que calcula el perimetro de las figuras
 perimeter :: Shape -> Float
-perimeter = undefined
+perimeter (Circle circulito) = 2 * pi * circulito
+perimeter (Square ladito) = 4 * ladito 
+perimeter (Rectangle base altura) = 2 * (base + altura)
+perimeter (Triangle ladote) = 3 * ladote
+--perimeter (Trapeze base al1 al2) = --no le supe
 
 
 --Ejercicio 2 (Les toca arreglar el sinonimo)
@@ -57,37 +61,62 @@ son progenitor1 progenitor2 hijo = Haskellium {
 
 --Funcion para calcular las unidades para construir la casa de un Haskellium
 houseCost :: Haskellium -> Float
-houseCost = undefined 
+houseCost ciudadano = areaParedes ciudadano + areaTecho ciudadano
 
 areaParedes :: Haskellium -> Float
-areaParedes ciudadano = perimeter (casita ciudadano)
+areaParedes ciudadano = perimeter (forma ciudadano) * 2.5
 
 areaTecho :: Haskellium -> Float
-areaTecho ciudadano = area (casita ciudadano)
+areaTecho ciudadano = area (forma ciudadano)
 
 --Funcion para calcular el tiempo que le toma a un Haskellium para llegar a su trabajo
 timeToWork :: Haskellium -> Float
-timeToWork = undefined
+timeToWork ciudadano = 
+        let dist = from0 (casita ciudadano)
+        in if dist < 300.0
+           then dist / 30.0
+           else dist / 70.0 
+                
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
+
+--Función auxiliar para sacar la reversa de una cadena
+reversa :: [a] -> [a]
+reversa [] = []
+reversa (x:xs) = reversa xs ++ [x]
+
+
 palindromo :: String -> Bool
-palindromo = undefined
+palindromo [] = True
+palindromo [_] = True
+palindromo xs = xs == reversa xs 
 
 --Ejercicio 2
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
-myFoldr = undefined
+myFoldr _ z [] = z
+myFoldr f z (x:xs) = f x (myFoldr f z xs)
 
 --Ejercicio 3
+
+--Función auxiliar para combinar cadenas.
+
+combinar :: a -> [[a]] -> [[a]]
+combinar x [] = []
+combinar x (y:ys) = (x:y) : y : (combinar x ys)
+
+
 conjuntoPotencia :: [a] -> [[a]]
-conjuntoPotencia = undefined
+conjuntoPotencia [] = [[]]
+conjuntoPotencia (x:xs) = combinar x (conjuntoPotencia xs)
 
 --ARBOLES
 
 --Implementacion
 
-data OneTwoTree a = Undefinedd
+data OneTwoTree a = Vacio | Nodo a (OneTwoTree a) | Rama a (OneTwoTree a) (OneTwoTree a) deriving (Show, Eq)
 
 --Ejercicio 2
 suma :: OneTwoTree Int -> Int
-suma = undefined
+suma Vacio = 0
+suma (Nodo x izq der) = x + suma izq + suma der
