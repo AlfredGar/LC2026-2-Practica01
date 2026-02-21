@@ -119,4 +119,5 @@ data OneTwoTree a = Vacio | Nodo a (OneTwoTree a) | Rama a (OneTwoTree a) (OneTw
 --Ejercicio 2
 suma :: OneTwoTree Int -> Int
 suma Vacio = 0
-suma (Nodo x izq der) = x + suma izq + suma der
+suma (Nodo x hijo) = x + suma hijo
+suma (Rama x izq der) = x + suma izq + suma der
