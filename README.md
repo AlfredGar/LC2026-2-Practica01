@@ -30,4 +30,3 @@ Si no les llegan a funcionar, es posible que el problema es que tengan una versi
 
 ## Comentarios
 
-Recuerden que opcionalmente pueden agregar un comentario (ver los lineamientos de entrega). Si es el caso, borren esta línea y dejen su comentario.
